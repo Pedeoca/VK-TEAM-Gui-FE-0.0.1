@@ -1,19 +1,22 @@
--- Criar elementos da interface
-local player = game.Players.LocalPlayer
+
+
 local gui = Instance.new("ScreenGui")
 gui.Name = "VKTeamGuiFE"
+pcall(function() syn.protect_gui(gui) end) -- Protege a GUI se suportado (ex: Synapse)
 gui.ResetOnSpawn = false
-gui.Parent = player:WaitForChild("PlayerGui")
+gui.Parent = game.CoreGui
 
+-- Janela principal
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 250, 0, 150)
-frame.Position = UDim2.new(0.5, -125, 0.5, -75) -- Centralizado
+frame.Position = UDim2.new(0.5, -125, 0.5, -75)
 frame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 frame.BorderSizePixel = 0
 frame.Active = true
 frame.Draggable = true
 frame.Parent = gui
 
+-- Título
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -20, 0, 30)
 title.Position = UDim2.new(0, 10, 0, 5)
@@ -25,10 +28,11 @@ title.Font = Enum.Font.SourceSansBold
 title.TextScaled = true
 title.Parent = frame
 
+-- Botão GhostHub
 local ghostButton = Instance.new("TextButton")
 ghostButton.Size = UDim2.new(0, 120, 0, 35)
-ghostButton.Position = UDim2.new(0.5, -60, 0, 80) -- Cerca de 3 linhas abaixo do topo
-ghostButton.BackgroundColor3 = Color3.fromRGB(128, 0, 128) -- Roxo
+ghostButton.Position = UDim2.new(0.5, -60, 0, 80)
+ghostButton.BackgroundColor3 = Color3.fromRGB(128, 0, 128)
 ghostButton.BorderSizePixel = 0
 ghostButton.Text = "ghosthub"
 ghostButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -36,7 +40,7 @@ ghostButton.Font = Enum.Font.SourceSansBold
 ghostButton.TextScaled = true
 ghostButton.Parent = frame
 
--- Código ao clicar no botão
+-- Evento de clique
 ghostButton.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-GhostHub-16534"))()
 end)

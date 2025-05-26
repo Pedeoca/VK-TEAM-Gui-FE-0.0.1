@@ -1,55 +1,42 @@
--- Criação da GUI principal
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "VKTeamGUI"
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+-- Criar elementos da interface
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Name = "VKTeamGuiFE"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
 
--- Frame principal (arrastável)
-local mainFrame = Instance.new("Frame")
-mainFrame.Name = "MainFrame"
-mainFrame.Size = UDim2.new(0, 300, 0, 200)
-mainFrame.Position = UDim2.new(0.5, -150, 0.5, -100) -- Centralizado
-mainFrame.BackgroundColor3 = Color3.fromRGB(100, 100, 100) -- Cinza
-mainFrame.Active = true
-mainFrame.Draggable = true
-mainFrame.Selectable = true
-mainFrame.Parent = screenGui
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 150)
+frame.Position = UDim2.new(0.5, -125, 0.5, -75) -- Centralizado
+frame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+frame.Parent = gui
 
--- Texto "VK TEAM Gui FE" no canto superior esquerdo
-local titleLabel = Instance.new("TextLabel")
-titleLabel.Name = "TitleLabel"
-titleLabel.Size = UDim2.new(0, 200, 0, 30)
-titleLabel.Position = UDim2.new(0, 10, 0, 10)
-titleLabel.BackgroundTransparency = 1
-titleLabel.Text = "VK TEAM Gui FE"
-titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.TextXAlignment = Enum.TextXAlignment.Left
-titleLabel.Font = Enum.Font.GothamBold
-titleLabel.TextSize = 18
-titleLabel.Parent = mainFrame
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -20, 0, 30)
+title.Position = UDim2.new(0, 10, 0, 5)
+title.BackgroundTransparency = 1
+title.Text = "VK TEAM Gui FE"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Font = Enum.Font.SourceSansBold
+title.TextScaled = true
+title.Parent = frame
 
--- Botão GhostHub (retângulo roxo)
-local ghostHubButton = Instance.new("TextButton")
-ghostHubButton.Name = "GhostHubButton"
-ghostHubButton.Size = UDim2.new(0, 120, 0, 40)
-ghostHubButton.Position = UDim2.new(0, 10, 0, 60) -- 3 linhas abaixo do título (ajustado para posição relativa)
-ghostHubButton.BackgroundColor3 = Color3.fromRGB(128, 0, 128) -- Roxo
-ghostHubButton.Text = "ghosthub"
-ghostHubButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-ghostHubButton.Font = Enum.Font.Gotham
-ghostHubButton.TextSize = 14
-ghostHubButton.Parent = mainFrame
+local ghostButton = Instance.new("TextButton")
+ghostButton.Size = UDim2.new(0, 120, 0, 35)
+ghostButton.Position = UDim2.new(0.5, -60, 0, 80) -- Cerca de 3 linhas abaixo do topo
+ghostButton.BackgroundColor3 = Color3.fromRGB(128, 0, 128) -- Roxo
+ghostButton.BorderSizePixel = 0
+ghostButton.Text = "ghosthub"
+ghostButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ghostButton.Font = Enum.Font.SourceSansBold
+ghostButton.TextScaled = true
+ghostButton.Parent = frame
 
--- Arredondar cantos do botão
-local buttonCorner = Instance.new("UICorner")
-buttonCorner.CornerRadius = UDim.new(0, 6)
-buttonCorner.Parent = ghostHubButton
-
--- Arredondar cantos do frame principal
-local frameCorner = Instance.new("UICorner")
-frameCorner.CornerRadius = UDim.new(0, 8)
-frameCorner.Parent = mainFrame
-
--- Função para carregar o GhostHub quando o botão é clicado
-ghostHubButton.MouseButton1Click:Connect(function()
+-- Código ao clicar no botão
+ghostButton.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-GhostHub-16534"))()
 end)
